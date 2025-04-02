@@ -1,0 +1,60 @@
+---
+title: "genomics_in_r"
+author: "Victoria Fisher"
+date: "2025-04-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c('qvalue','plot3D','ggplot2','pheatmap','cowplot',
+                      'cluster', 'NbClust', 'fastICA', 'NMF','matrixStats',
+                      'Rtsne', 'mosaic', 'knitr', 'genomation',
+                      'ggbio', 'Gviz', 'DESeq2', 'RUVSeq',
+                      'gProfileR', 'ggfortify', 'corrplot',
+                      'gage', 'EDASeq', 'citr', 'formatR',
+                      'svglite', 'Rqc', 'ShortRead', 'QuasR',
+                      'methylKit','FactoMineR', 'iClusterPlus',
+                      'enrichR','caret','xgboost','glmnet',
+                      'DALEX','kernlab','pROC','nnet','RANN',
+                      'ranger','GenomeInfoDb', 'GenomicRanges',
+                      'GenomicAlignments', 'ComplexHeatmap', 'circlize', 
+                      'rtracklayer', 'BSgenome.Hsapiens.UCSC.hg38',
+                      'BSgenome.Hsapiens.UCSC.hg19','tidyr',
+                      'AnnotationHub', 'GenomicFeatures', 'normr',
+                      'MotifDb', 'TFBSTools', 'rGADEM', 'JASPAR2018'
+                     ))
+
+options(timeout=300)
+
+devtools::install_github("compgenomr/compGenomRData")
+
+```
+
+
+```{r}
+enhancerFilePath=system.file("extdata",
+                "subset.enhancers.hg18.bed",
+                package="compGenomRData")
+cpgiFilePath=system.file("extdata",
+                "subset.cpgi.hg18.bed",
+                package="compGenomRData")
+# read enhancer marker BED file
+enh.df <- read.table(enhancerFilePath, header = FALSE) 
+
+# read CpG island BED file
+cpgi.df <- read.table(cpgiFilePath, header = FALSE) 
+
+# check first lines to see how the data looks like
+head(enh.df)
+
+head(cpgi.df)
+
+save(cpgi.df,enh.df,file="mydata.RData")
+```
+
