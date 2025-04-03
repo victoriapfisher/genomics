@@ -1,6 +1,8 @@
 ---
 title: "Statistics for Genomics Exercises"
 date: 2025-04-03
+layout: post
+output: jekyllthat::jekylldown
 ---
 
 3.4 Statistics for Genomics Exercises
